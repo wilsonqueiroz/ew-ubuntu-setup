@@ -179,6 +179,25 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
+echo 'Install Kubernetes '
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl 
+sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl -y
+sudo apt-mark hold kubelet kubeadm kubectl -y
+
+
+echo 'Install Minikube and Virtualbox'
+sudo apt-get install apt-transport-https
+sudo apt install virtualbox virtualbox-ext-pack -y
+sudo wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+sudo chmod 755 /usr/local/bin/minikube
+
+
 echo 'installing aws-cli' 
 sudo apt-get install awscli -y
 aws --version
