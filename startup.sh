@@ -18,14 +18,6 @@ read git_config_user_email
 git config --global user.email $git_config_user_email
 clear
 
-echo "Can I set VIM as your default GIT editor for you? (y/n)"
-read git_core_editor_to_vim
-if echo "$git_core_editor_to_vim" | grep -iq "^y" ;then
-	git config --global core.editor vim
-else
-	echo "Okay, no problem. :) Let's move on!"
-fi
-
 echo "Generating a SSH Key"
 ssh-keygen -t rsa -b 4096 -C $git_config_user_email
 ssh-add ~/.ssh/id_rsa
@@ -105,14 +97,6 @@ sudo apt install fonts-firacode -y
 wget -O ~/.oh-my-zsh/themes/node.zsh-theme https://raw.githubusercontent.com/skuridin/oh-my-zsh-node-theme/master/node.zsh-theme 
 sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="node"/g' ~/.zshrc
 
-echo 'installing meet franz' 
-wget https://github.com/meetfranz/franz/releases/download/v5.1.0/franz_5.1.0_amd64.deb -O franz.deb
-sudo dpkg -i franz.debchristian-kohler.path-intellisense
-sudo apt-get install -y -f 
-
-echo 'installing slack' 
-wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.deb
-sudo apt install ./slack-desktop-*.deb -y
 
 echo 'installing terminator'
 sudo apt-get update
@@ -169,6 +153,8 @@ sudo apt-get remove docker docker-engine docker.io
 sudo apt install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
 docker --version
 
 chmod 777 /var/run/docker.sock
@@ -205,14 +191,6 @@ curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64
 sudo dpkg -i session-manager-plugin.deb
 session-manager-plugin --version
 
-echo 'installing teamviewer'
-wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-sudo apt install -y ./teamviewer_amd64.deb
-
-echo 'installing vnc-viewer'
-sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
-sudo apt-get install vnc4server -y 
-
 echo 'installing fzf'
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
@@ -224,7 +202,25 @@ cd openshift-origin-client-tools-v3.9.0-191fece-linux-64bit
 sudo cp oc /usr/local/bin/
 oc version
 
-echo 'installing dbeaver'
-wget -c https://dbeaver.io/files/6.0.0/dbeaver-ce_6.0.0_amd64.deb
-sudo dpkg -i dbeaver-ce_6.0.0_amd64.deb
-sudo apt-get install -f
+sudo snap install atom --classic
+
+sudo snap install postman
+
+sudo snap install node --classic
+
+sudo snap install netbeans --channel=11.0/stable --classic
+sudo snap install go --classic
+
+sudo snap install popeye
+
+sudo snap install zenkit
+
+sudo snap install fromscratch
+
+sudo snap install ao
+
+sudo snap install taskbook	
+
+sudo snap install notepadqq
+
+sudo snap install google-cloud-sdk --classic
