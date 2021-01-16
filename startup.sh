@@ -175,15 +175,6 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl -y
 sudo apt-mark hold kubelet kubeadm kubectl -y
 
-
-echo 'Install Minikube and Virtualbox'
-sudo apt-get install apt-transport-https
-sudo apt install virtualbox virtualbox-ext-pack -y
-sudo wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-sudo cp minikube-linux-amd64 /usr/local/bin/minikube
-sudo chmod 755 /usr/local/bin/minikube
-
-
 echo 'installing aws-cli' 
 sudo apt-get install awscli -y
 aws --version
@@ -191,16 +182,15 @@ curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64
 sudo dpkg -i session-manager-plugin.deb
 session-manager-plugin --version
 
-echo 'installing fzf'
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all
+sudo snap install notepad-plus-plus
 
-echo 'Install oc client'
-sudo wget https://github.com/openshift/origin/releases/download/v3.9.0/openshift-origin-client-tools-v3.9.0-191fece-linux-64bit.tar.gz
-sudo tar -zvxf openshift-origin-client-tools-v3.9.0-191fece-linux-64bit.tar.gz
-cd openshift-origin-client-tools-v3.9.0-191fece-linux-64bit
-sudo cp oc /usr/local/bin/
-oc version
+sudo snap install gisto
+
+sudo snap install dbeaver-ce
+
+sudo snap install intellij-idea-community --classic
+
+sudo snap install intellij-idea-ultimate --classic
 
 sudo snap install atom --classic
 
@@ -208,19 +198,14 @@ sudo snap install postman
 
 sudo snap install node --classic
 
-sudo snap install netbeans --channel=11.0/stable --classic
-sudo snap install go --classic
-
 sudo snap install popeye
 
 sudo snap install zenkit
 
-sudo snap install fromscratch
-
-sudo snap install ao
-
-sudo snap install taskbook	
-
 sudo snap install notepadqq
 
 sudo snap install google-cloud-sdk --classic
+
+sudo snap install epictask
+
+sudo snap install ubuntu-make --classic
